@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  django-base:
+    build:
+      context: ./src
+      dockerfile: ./Dockerfile
+    expose:
+      - 8000
+    env_file:
+      - .env
+      - .django.env
+    volumes:
+      - media_files:/home/django/mediafiles
+      - static_files:/home/django/staticfiles
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "pg_isready",
+          "-U",
+          "$POSTGRES_USER",
+          "-d",
+          "$POSTGRES_DB"
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  nginx-proxy:
+    build: nginx
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    depends_on:
+      - django-base
+
+volumes:
+  postgres_data:
+  media_files:
+  static_files:

@@ -1,0 +1,36 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description" content="Basic Django project template">
+        <meta name="keywords" content="Django, template">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>
+            {% block title %}
+                Django Project Base
+            {% endblock title %}
+        </title>
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block css %}
+        {% endblock css %}
+        <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        {% block navbar %}
+            {% include "components/navbar.html" %}
+        {% endblock navbar %}
+        <div class="container my-5">
+            {% block content %}
+                <h1>Welcome to My Django Project Template</h1>
+            {% endblock content %}
+        </div>
+        {% bootstrap_javascript %}
+        <script src="{% static 'js/base.js' %}"></script>
+        {% block js %}
+        {% endblock js %}
+    </body>
+</html>

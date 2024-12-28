@@ -1,0 +1,4 @@
+location /media/ {
+  alias /home/django/mediafiles/;
+  add_header Access-Control-Allow-Origin *;
+}

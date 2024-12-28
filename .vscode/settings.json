@@ -1,0 +1,13 @@
+{
+    "flake8.args": [
+        "--max-line-length",
+        "119"
+    ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[html][django-html][handlebars][hbs][mustache][jinja][jinja-html][nj][njk][nunjucks][twig]": {
+        "editor.defaultFormatter": "monosans.djlint"
+    },
+    "files.autoSave": "off",
+}

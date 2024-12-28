@@ -1,0 +1,22 @@
+[project]
+name = "HallegardenCMS"
+version = "1.0"
+requires-python = ">=3.9"
+dependencies = [ 
+    "django",
+    "psycopg",
+    "environs[django]",
+    "django-bootstrap5",
+    "whitenoise",
+    "gunicorn",
+    "django-debug-toolbar", # Needs to be here, not in dev
+]
+
+[project.optional-dependencies]
+dev = [ 
+    "pylint-django", 
+    "black",
+    "flake8",
+    "djlint",
+    "pytest-django",
+]

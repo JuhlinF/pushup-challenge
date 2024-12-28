@@ -6,11 +6,11 @@
 #
 asgiref==3.8.1
     # via django
-astroid==3.3.5
+astroid==3.3.8
     # via pylint
 black==24.10.0
     # via HallegardenCMS (pyproject.toml)
-click==8.1.7
+click==8.1.8
     # via
     #   black
     #   djlint
@@ -24,7 +24,7 @@ dj-database-url==2.3.0
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.1.3
+django==5.1.4
     # via
     #   HallegardenCMS (pyproject.toml)
     #   dj-database-url
@@ -36,9 +36,9 @@ django-cache-url==3.4.5
     # via environs
 django-debug-toolbar==4.4.6
     # via HallegardenCMS (pyproject.toml)
-djlint==1.36.3
+djlint==1.36.4
     # via HallegardenCMS (pyproject.toml)
-editorconfig==0.12.4
+editorconfig==0.17.0
     # via
     #   cssbeautifier
     #   jsbeautifier
@@ -58,7 +58,7 @@ jsbeautifier==1.15.1
     #   djlint
 json5==0.10.0
     # via djlint
-marshmallow==3.23.1
+marshmallow==3.23.2
     # via environs
 mccabe==0.7.0
     # via
@@ -88,7 +88,7 @@ pycodestyle==2.12.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
-pylint==3.3.1
+pylint==3.3.3
     # via
     #   pylint-django
     #   pylint-plugin-utils
@@ -96,7 +96,7 @@ pylint-django==2.6.1
     # via HallegardenCMS (pyproject.toml)
 pylint-plugin-utils==0.8.2
     # via pylint-django
-pytest==8.3.3
+pytest==8.3.4
     # via pytest-django
 pytest-django==4.9.0
     # via HallegardenCMS (pyproject.toml)
@@ -106,11 +106,11 @@ pyyaml==6.0.2
     # via djlint
 regex==2024.11.6
     # via djlint
-six==1.16.0
+six==1.17.0
     # via
     #   cssbeautifier
     #   jsbeautifier
-sqlparse==0.5.2
+sqlparse==0.5.3
     # via
     #   django
     #   django-debug-toolbar

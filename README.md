@@ -1,6 +1,17 @@
-# django-base
+# 50k Push-up Challenge
 
-My very own Django project template.
+A companion web app to log and track progress to completing 50k push-ups during 2005.
+
+## Design/development ideas 
+
+- Easy input of push-ups done
+   - preset multiples of 10?
+   - Remember and default to the latest amount entered?
+- Show today's progress
+   - and other time periods?
+- Show total progress
+   - towards today's goal (in order to reach the full goal)
+- Set your own end goal amount (if not 50k) 
 
 ## Documentation
 

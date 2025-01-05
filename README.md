@@ -11,7 +11,9 @@ A companion web app to log and track progress to completing 50k push-ups during 
    - and other time periods?
 - Show total progress
    - towards today's goal (in order to reach the full goal)
-- Set your own end goal amount (if not 50k) 
+- Set your own end goal amount (if not 50k)
+- Add "backlog" entries, i.e. set date (& time?) for the entry.
+- Option to record sets and reps, not only total reps, for an entry. 
 
 ## Documentation
 

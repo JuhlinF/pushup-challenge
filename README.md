@@ -1,6 +1,6 @@
 # 50k Push-up Challenge
 
-A companion web app to log and track progress to completing 50k push-ups during 2005.
+A companion web app to log and track progress to completing 50k push-ups during 2025.
 
 ## Design/development ideas 
 

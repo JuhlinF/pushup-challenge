@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+    Home
+{% endblock title %}
+{% block content %}
+    <h1>Log some push-ups!</h1>
+    <form method="post" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form layout="horizontal" %}
+        {% bootstrap_button button_type="submit" content="OK" %}
+        {% bootstrap_button button_type="reset" content="Cancel" %}
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">When</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Repetitions</th>
+            </tr>
+        </thead>
+        {% for entry in pushup_log %}
+            <tr>
+                <td>{{ entry.created_at }}</td>
+                <td>{{ entry.sets }}</td>
+                <td>{{ entry.repetitions }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

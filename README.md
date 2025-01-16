@@ -1,6 +1,6 @@
 # 50k Push-up Challenge
 
-A companion web app to log and track progress to completing 50k push-ups during 2025.
+A companion web app to log and track progress to completing 50k push-ups (or however many your goal is) during 2025.
 
 ## Design/development ideas 
 
@@ -14,6 +14,15 @@ A companion web app to log and track progress to completing 50k push-ups during 
 - Set your own end goal amount (if not 50k)
 - Add "backlog" entries, i.e. set date (& time?) for the entry.
 - Option to record sets and reps, not only total reps, for an entry. 
+
+- Use sqlite in lieu of Postgres?
+- Use HTMX 
+- Use django-components?
+
+## FIXME
+- Require user to be logged in to log push-ups (in pushuplog.views.home)
+    - Make pushuplog.models.PushupLogEntry.user non-nullable
+
 
 ## Documentation
 

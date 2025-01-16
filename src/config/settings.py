@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     # Project apps
     "users",
+    "pushuplog",
 ]
 
 MIDDLEWARE = [

@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Django",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/src/manage.py",
             "args": [
@@ -14,7 +14,7 @@
                 "0.0.0.0:8000"
             ],
             "django": true,
-            "justMyCode": true,
+            "justMyCode": false,
             "envFile": "${workspaceFolder}/.devcontainer/dev.env"
         }
     ]

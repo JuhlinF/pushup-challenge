@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 
 
 class PushupLogEntry(models.Model):
@@ -8,6 +9,7 @@ class PushupLogEntry(models.Model):
     )
     sets = models.SmallIntegerField(default=1, blank=True)
     repetitions = models.SmallIntegerField()
+    when = models.DateTimeField(default=timezone.now, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

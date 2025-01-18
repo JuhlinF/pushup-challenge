@@ -1,8 +1,15 @@
 from django.http import HttpRequest
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from pushuplog.models import PushupLogEntry
 from pushuplog.forms import SimplePushupLogForm
+
+
+def index(request: HttpRequest):
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    return render(request, "index.html")
 
 
 def home(request: HttpRequest):

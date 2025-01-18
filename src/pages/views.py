@@ -25,7 +25,7 @@ def home(request: HttpRequest):
 
     form = SimplePushupLogForm()
 
-    pushup_log = PushupLogEntry.objects.all()
+    pushup_log = PushupLogEntry.objects.filter(user=request.user).order_by("-when")
     context = {
         "form": form,
         "pushup_log": pushup_log,

@@ -1,4 +1,5 @@
 from django.http import HttpRequest
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from pushuplog.models import PushupLogEntry
@@ -12,16 +13,14 @@ def index(request: HttpRequest):
     return render(request, "index.html")
 
 
+@login_required
 def home(request: HttpRequest):
     if request.method == "POST":
         form = SimplePushupLogForm(request.POST)
         if form.is_valid():
             sets = form.cleaned_data["sets"]
             reps = form.cleaned_data["repetitions"]
-            if request.user.is_authenticated:
-                user = request.user
-            else:
-                user = None
+            user = request.user
             PushupLogEntry.objects.create(user=user, sets=sets, repetitions=reps)
 
     form = SimplePushupLogForm()

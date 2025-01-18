@@ -4,9 +4,7 @@ from django.utils import timezone
 
 
 class PushupLogEntry(models.Model):
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, blank=True, null=True, on_delete=models.CASCADE
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     sets = models.SmallIntegerField(default=1, blank=True)
     repetitions = models.SmallIntegerField()
     when = models.DateTimeField(default=timezone.now, blank=True)

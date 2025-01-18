@@ -39,6 +39,14 @@ ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=[])
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_TRUSTED_ORIGINS = env.list("DJANGO_CSRF_TRUSTED_ORIGINS", [])
 
+# To use django-allauth for authentication
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,6 +59,8 @@ INSTALLED_APPS = [
     # External apps
     "debug_toolbar",
     "django_bootstrap5",
+    "allauth",
+    "allauth.account",
     # Project apps
     "users",
     "pushuplog",
@@ -66,6 +76,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -141,7 +152,7 @@ USE_TZ = True
 AUTH_USER_MODEL = "users.User"
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#login-url
-LOGIN_URL = "/users/login/"
+LOGIN_URL = "/accounts/login/"
 
 # https://docs.djangoproject.com/en/4.2/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "/"
@@ -212,3 +223,10 @@ BOOTSTRAP5 = {
         "crossorigin": "anonymous",
     },
 }
+
+# https://docs.allauth.org/en/dev/account/configuration.html
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"

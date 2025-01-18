@@ -32,7 +32,7 @@
                                 </li>
                             {% endif %}
                             <li class="dropdown-item">
-                                <form action="{% url 'logout' %}" method="post">
+                                <form action="{% url 'account_logout' %}" method="post">
                                     {% csrf_token %}
                                     <button type="submit" class="nav-link">Logout</button>
                                 </form>
@@ -41,7 +41,7 @@
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a href="{% url 'login' %}" class="nav-link">Login</a>
+                        <a href="{% url 'account_login' %}" class="nav-link">Login</a>
                     </li>
                 {% endif %}
             </ul>

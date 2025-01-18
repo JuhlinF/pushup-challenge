@@ -23,6 +23,6 @@ from pages import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
-    path("users/", include("django.contrib.auth.urls")),
+    path("accounts/", include("allauth.urls")),
     path("", views.home, name="home"),
 ]

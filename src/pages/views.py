@@ -1,6 +1,10 @@
+from datetime import date
+import math
+
 from django.http import HttpRequest
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.db.models import Sum
 
 from pushuplog.models import PushupLogEntry
 from pushuplog.forms import SimplePushupLogForm
@@ -30,4 +34,32 @@ def home(request: HttpRequest):
         "form": form,
         "pushup_log": pushup_log,
     }
+
+    # Calculate stats
+    end_date = date(2026, 1, 1)
+    today = date.today()
+
+    statistics = {}
+    statistics["goal"] = 50_000
+    statistics.update(
+        PushupLogEntry.objects.filter(user=request.user, when__date=today).aggregate(
+            done_today=Sum("repetitions_total")
+        )
+    )
+    statistics.update(
+        PushupLogEntry.objects.filter(
+            user=request.user, when__date__lt=today
+        ).aggregate(done_before_today=Sum("repetitions_total"))
+    )
+    statistics.update(
+        PushupLogEntry.objects.filter(user=request.user).aggregate(
+            done_total=Sum("repetitions_total")
+        )
+    )
+    statistics["needed_day"] = math.ceil(
+        (statistics["goal"] - statistics["done_before_today"]) / (end_date - today).days
+    )
+    statistics["left_today"] = statistics["needed_day"] - statistics["done_today"]
+
+    context["statistics"] = statistics
     return render(request, "home.html", context)

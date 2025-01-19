@@ -11,6 +11,20 @@
         {% bootstrap_button button_type="submit" content="OK" %}
         {% bootstrap_button button_type="reset" content="Cancel" %}
     </form>
+    <div>
+        You've done <b>{{ statistics.done_today }}</b> push-ups so far today!
+        <br>
+        {% if statistics.left_today > 0 %}
+            You need to do {{ statistics.left_today }} more to reach today's goal.
+        {% elif statistics.left_today < 0 %}
+            You've surpassed today's goal by {{ statistics.left_today| cut:"-" }} push-ups. Awesome!
+        {% else %}
+            You've reached todays goal. Great!
+        {% endif %}
+        <br>
+        So far, you've done a total of {{ statistics.done_total }}  of your goal of {{ statistics.goal }} push-ups.
+        <br>
+    </div>
     <table class="table">
         <thead>
             <tr>

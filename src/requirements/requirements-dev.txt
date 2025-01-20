@@ -87,8 +87,6 @@ platformdirs==4.3.6
     #   pylint
 pluggy==1.5.0
     # via pytest
-psycopg==3.2.3
-    # via PushupChallenge (pyproject.toml)
 pycodestyle==2.12.1
     # via flake8
 pyflakes==3.2.0
@@ -107,6 +105,8 @@ pytest-django==4.9.0
     # via PushupChallenge (pyproject.toml)
 python-dotenv==1.0.1
     # via environs
+pytz==2024.2
+    # via PushupChallenge (pyproject.toml)
 pyyaml==6.0.2
     # via djlint
 regex==2024.11.6
@@ -124,8 +124,6 @@ tomlkit==0.13.2
 tqdm==4.67.1
     # via djlint
 typing-extensions==4.12.2
-    # via
-    #   dj-database-url
-    #   psycopg
+    # via dj-database-url
 whitenoise==6.8.2
     # via PushupChallenge (pyproject.toml)

@@ -8,6 +8,7 @@
             "name": "Django",
             "type": "debugpy",
             "request": "launch",
+            "cwd": "${workspaceFolder}/src",
             "program": "${workspaceFolder}/src/manage.py",
             "args": [
                 "runserver",

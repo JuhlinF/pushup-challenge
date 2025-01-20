@@ -13,29 +13,7 @@ services:
     volumes:
       - media_files:/home/django/mediafiles
       - static_files:/home/django/staticfiles
-    depends_on:
-      postgres:
-        condition: service_healthy
-
-  postgres:
-    image: postgres:15
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    env_file:
-      - .env
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "pg_isready",
-          "-U",
-          "$POSTGRES_USER",
-          "-d",
-          "$POSTGRES_DB"
-        ]
-      interval: 5s
-      timeout: 3s
-      retries: 5
+      - sqlite_data:/home/django/sqlite3
 
   nginx-proxy:
     build: nginx
@@ -47,6 +25,6 @@ services:
       - django-base
 
 volumes:
-  postgres_data:
+  sqlite_data:
   media_files:
   static_files:

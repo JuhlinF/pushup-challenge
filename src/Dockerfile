@@ -19,9 +19,12 @@ RUN apt-get update && apt-get --no-install-recommends --yes upgrade && apt-get -
 # Set the working directory
 WORKDIR $APP_HOME
 
-# MAke sure we have a directory for media and static files.
+# Make sure we have a directory for media and static files.
 RUN mkdir $APP_HOME/mediafiles
 RUN mkdir $APP_HOME/staticfiles
+
+# Create directory for SQLite db file
+RUN mkdir $APP_HOME/sqlite3
 
 # Update pip
 RUN pip install --upgrade pip

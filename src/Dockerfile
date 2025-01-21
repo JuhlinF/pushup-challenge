@@ -2,7 +2,7 @@
 ### For development, use VS Code Dev container or Github Codespaces.
 
 # Official Python image
-FROM python:3.11.4-slim-buster
+FROM python:3.11.4-slim-bookworm
 
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -14,7 +14,7 @@ ARG APP_USER=django
 ARG APP_HOME=/home/${APP_USER}
 
 # Update the install
-RUN apt-get update && apt-get --no-install-recommends --yes upgrade && apt-get --no-install-recommends --yes install libpq5
+RUN apt-get update && apt-get --no-install-recommends --yes upgrade 
 
 # Set the working directory
 WORKDIR $APP_HOME

@@ -7,22 +7,22 @@ A companion web app to log and track progress to completing 50k push-ups (or how
 - Easy input of push-ups done
    - preset multiples of 10?
    - Remember and default to the latest amount entered?
-- Show today's progress
+- Show today's progress **DONE**
    - and other time periods?
-- Show total progress
-   - towards today's goal (in order to reach the full goal)
+- Show total progress **DONE**
+   - towards today's goal (in order to reach the full goal) **DONE**
 - Set your own end goal amount (if not 50k)
 - Add "backlog" entries, i.e. set date (& time?) for the entry.
-- Option to record sets and reps, not only total reps, for an entry. 
+- Option to record sets and reps, not only total reps, for an entry. **DONE**
 
-- Use sqlite in lieu of Postgres?
+- Use sqlite in lieu of Postgres? **DONE**
 - Use HTMX 
 - Use django-components?
 
-## FIXME
-- Require user to be logged in to log push-ups (in pushuplog.views.home)
-    - Make pushuplog.models.PushupLogEntry.user non-nullable
-
+## MVP TARGETS
+- Ability to set date & time when adding log entry
+- Ability to delete entry
+- Ability to set own goal(?)
 
 ## Documentation
 

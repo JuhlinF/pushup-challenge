@@ -25,8 +25,11 @@ def home(request: HttpRequest):
         if form.is_valid():
             sets = form.cleaned_data["sets"]
             reps = form.cleaned_data["repetitions"]
+            when = form.cleaned_data["when"]
             user = request.user
-            PushupLogEntry.objects.create(user=user, sets=sets, repetitions=reps)
+            PushupLogEntry.objects.create(
+                user=user, sets=sets, repetitions=reps, when=when
+            )
 
     form = SimplePushupLogForm()
 

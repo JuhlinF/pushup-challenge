@@ -27,8 +27,11 @@ def home(request: HttpRequest):
             when = form.cleaned_data["when"]
             user = request.user
             PushupLogEntry.objects.create(user=user, repetitions=reps, when=when)
-
-    form = SimplePushupLogForm()
+            form = (
+                SimplePushupLogForm()
+            )  # Empty form to log new entry with - if the form was invalid we re-show it with error messages
+    else:
+        form = SimplePushupLogForm()
 
     pushup_log = PushupLogEntry.objects.filter(user=request.user).order_by("-when")
     context = {

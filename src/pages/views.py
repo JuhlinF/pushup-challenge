@@ -29,7 +29,7 @@ def home(request: HttpRequest):
             PushupLogEntry.objects.create(user=user, repetitions=reps, when=when)
             form = (
                 SimplePushupLogForm()
-            )  # Empty form to log new entry with - if the form was invalid we re-show it with error messages
+            )  # Empty form to log new entry - if the form was invalid we re-show the previous form with error messages
     else:
         form = SimplePushupLogForm()
 

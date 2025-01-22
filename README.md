@@ -20,7 +20,7 @@ A companion web app to log and track progress to completing 50k push-ups (or how
 - Use django-components?
 
 ## MVP TARGETS
-- Ability to set date & time when adding log entry
+- Ability to set date & time when adding log entry **DONE**
 - Remove sets **DONE**
 - Ability to delete entry
 - Ability to set own goal(?)

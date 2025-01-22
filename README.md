@@ -21,7 +21,7 @@ A companion web app to log and track progress to completing 50k push-ups (or how
 
 ## MVP TARGETS
 - Ability to set date & time when adding log entry
-- Remove reps
+- Remove sets **DONE**
 - Ability to delete entry
 - Ability to set own goal(?)
 

@@ -23,13 +23,10 @@ def home(request: HttpRequest):
     if request.method == "POST":
         form = SimplePushupLogForm(request.POST)
         if form.is_valid():
-            sets = form.cleaned_data["sets"]
             reps = form.cleaned_data["repetitions"]
             when = form.cleaned_data["when"]
             user = request.user
-            PushupLogEntry.objects.create(
-                user=user, sets=sets, repetitions=reps, when=when
-            )
+            PushupLogEntry.objects.create(user=user, repetitions=reps, when=when)
 
     form = SimplePushupLogForm()
 
@@ -47,17 +44,17 @@ def home(request: HttpRequest):
     statistics["goal"] = 50_000
     statistics.update(
         PushupLogEntry.objects.filter(user=request.user, when__date=today).aggregate(
-            done_today=Coalesce(Sum("repetitions_total"), 0)
+            done_today=Coalesce(Sum("repetitions"), 0)
         )
     )
     statistics.update(
         PushupLogEntry.objects.filter(
             user=request.user, when__date__lt=today
-        ).aggregate(done_before_today=Coalesce(Sum("repetitions_total"), 0))
+        ).aggregate(done_before_today=Coalesce(Sum("repetitions"), 0))
     )
     statistics.update(
         PushupLogEntry.objects.filter(user=request.user).aggregate(
-            done_total=Coalesce(Sum("repetitions_total"), 0)
+            done_total=Coalesce(Sum("repetitions"), 0)
         )
     )
     statistics["needed_day"] = math.ceil(

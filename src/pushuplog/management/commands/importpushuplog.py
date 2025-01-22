@@ -50,11 +50,7 @@ class Command(BaseCommand):
         for row in logreader:
             row_num += 1
             if len(row) == 2:  # If only two columns, "set" is assumed to be 1
-                sets = 1
                 repetitions = row[1]
-            elif len(row) == 3:
-                sets = row[1]
-                repetitions = row[2]
             else:
                 raise CommandError(
                     f"Incorrect number of fields in row {row_num}: {len(row)}"
@@ -79,9 +75,7 @@ class Command(BaseCommand):
                     'The "when" column of the first row must not be empty'
                 )
 
-            PushupLogEntry.objects.create(
-                user=user, when=when, sets=sets, repetitions=repetitions
-            )
+            PushupLogEntry.objects.create(user=user, when=when, repetitions=repetitions)
 
         self.stdout.write(
             self.style.SUCCESS(f"Successfully imported {row_num} entries")

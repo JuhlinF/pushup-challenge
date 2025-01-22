@@ -29,14 +29,12 @@
         <thead>
             <tr>
                 <th scope="col">When</th>
-                <th scope="col">Sets</th>
                 <th scope="col">Repetitions</th>
             </tr>
         </thead>
         {% for entry in pushup_log %}
             <tr>
                 <td>{{ entry.when }}</td>
-                <td>{{ entry.sets }}</td>
                 <td>{{ entry.repetitions }}</td>
             </tr>
         {% endfor %}

@@ -25,18 +25,4 @@
         So far, you've done a total of {{ statistics.done_total }}  of your goal of {{ statistics.goal }} push-ups.
         <br>
     </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">When</th>
-                <th scope="col">Repetitions</th>
-            </tr>
-        </thead>
-        {% for entry in pushup_log %}
-            <tr>
-                <td>{{ entry.when }}</td>
-                <td>{{ entry.repetitions }}</td>
-            </tr>
-        {% endfor %}
-    </table>
 {% endblock content %}

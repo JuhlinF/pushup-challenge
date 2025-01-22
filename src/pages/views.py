@@ -33,10 +33,8 @@ def home(request: HttpRequest):
     else:
         form = SimplePushupLogForm()
 
-    pushup_log = PushupLogEntry.objects.filter(user=request.user).order_by("-when")
     context = {
         "form": form,
-        "pushup_log": pushup_log,
     }
 
     # Calculate stats
@@ -67,3 +65,20 @@ def home(request: HttpRequest):
 
     context["statistics"] = statistics
     return render(request, "home.html", context)
+
+
+@login_required
+def logs(request: HttpRequest):
+    if request.method == "POST":
+        id_to_delete = int(request.POST["entry_id"])
+        logentry = PushupLogEntry.objects.get(id=id_to_delete)
+        if logentry.user == request.user:
+            logentry.delete()
+
+    pushup_log = PushupLogEntry.objects.filter(user=request.user).order_by("-when")
+
+    context = {
+        "pushup_log": pushup_log,
+    }
+
+    return render(request, "logs.html", context)

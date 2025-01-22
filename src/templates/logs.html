@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}
+    Logs
+{% endblock title %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">When</th>
+                <th scope="col">Repetitions</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        {% for entry in pushup_log %}
+            <tr>
+                <td>{{ entry.when }}</td>
+                <td>{{ entry.repetitions }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="entry_id" value="{{ entry.id }}">
+                        {% bootstrap_button button_type="submit" content="X" size="sm" button_class="btn-danger" %}
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

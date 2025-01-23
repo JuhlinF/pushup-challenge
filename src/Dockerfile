@@ -14,7 +14,7 @@ ARG APP_USER=django
 ARG APP_HOME=/home/${APP_USER}
 
 # Update the install
-RUN apt-get update && apt-get --no-install-recommends --yes upgrade 
+RUN apt-get update && apt-get --no-install-recommends --yes upgrade && apt-get --no-install-recommends --yes install sqlite3
 
 # Set the working directory
 WORKDIR $APP_HOME

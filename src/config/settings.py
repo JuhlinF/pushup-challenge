@@ -208,6 +208,8 @@ EMAIL_HOST_USER = email["EMAIL_HOST_USER"]
 EMAIL_USE_TLS = email["EMAIL_USE_TLS"]
 EMAIL_BACKEND = email["EMAIL_BACKEND"]
 
+DEFAULT_FROM_EMAIL = env.str("DJANGO_DEFAULT_FROM_EMAIL", default="webmaster@localhost")
+
 # https://django-bootstrap5.readthedocs.io/en/latest/settings.html
 
 BOOTSTRAP5 = {

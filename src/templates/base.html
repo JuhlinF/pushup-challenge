@@ -1,5 +1,6 @@
 {% load django_bootstrap5 %}
 {% load static %}
+{% load django_htmx %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,6 +32,7 @@
         {% bootstrap_javascript %}
         <script src="{% static 'js/base.js' %}"></script>
         <script src="{% static 'js/htmx.min.js' %}"></script>
+        {% django_htmx_script %}
         {% block js %}
         {% endblock js %}
     </body>

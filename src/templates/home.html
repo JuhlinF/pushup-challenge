@@ -5,12 +5,7 @@
 {% endblock title %}
 {% block content %}
     <h1>Log some push-ups!</h1>
-    <form method="post" class="form">
-        {% csrf_token %}
-        {% bootstrap_form form layout="horizontal" %}
-        {% bootstrap_button button_type="submit" content="OK" %}
-        {% bootstrap_button button_type="reset" content="Cancel" %}
-    </form>
+    {% include "components/logform.html" %}
     <div>
         You've done <b>{{ statistics.done_today }}</b> push-ups so far today!
         <br>

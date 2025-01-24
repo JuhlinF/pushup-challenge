@@ -20,22 +20,30 @@ def index(request: HttpRequest):
 
 @login_required
 def home(request: HttpRequest):
+    context = {}
+
+    if request.htmx:
+        context["form"] = SimplePushupLogForm()
+        context["show_when_field"] = True
+        return render(request, "components/logform.html", context)
     if request.method == "POST":
         form = SimplePushupLogForm(request.POST)
         if form.is_valid():
-            reps = form.cleaned_data["repetitions"]
-            when = form.cleaned_data["when"]
-            user = request.user
-            PushupLogEntry.objects.create(user=user, repetitions=reps, when=when)
+            kw = {
+                "repetitions": form.cleaned_data["repetitions"],
+                "user": request.user,
+            }
+            if form.cleaned_data["when"]:
+                kw["when"] = form.cleaned_data["when"]
+            PushupLogEntry.objects.create(**kw)
+
             form = (
                 SimplePushupLogForm()
             )  # Empty form to log new entry - if the form was invalid we re-show the previous form with error messages
     else:
         form = SimplePushupLogForm()
 
-    context = {
-        "form": form,
-    }
+    context["form"] = form
 
     # Calculate stats
     end_date = date(2026, 1, 1)

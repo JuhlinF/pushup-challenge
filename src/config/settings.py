@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django_bootstrap5",
     "allauth",
     "allauth.account",
+    "django_htmx",
     # Project apps
     "users",
     "pushuplog",
@@ -77,6 +78,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"

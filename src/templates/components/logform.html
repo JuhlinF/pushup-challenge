@@ -1,0 +1,19 @@
+{% load django_bootstrap5 %}
+{% if show_when_field %}
+    {% bootstrap_field form.when %}
+{% else %}
+    <form method="post" class="form" id="logform">
+        {% csrf_token %}
+        {% bootstrap_form_errors form type="non_fields" %}
+        {% bootstrap_field form.repetitions %}
+        <div class="mb-3" id="replace-div">
+            <button class="btn btn-link"
+                    type="button"
+                    hx-get=""
+                    hx-target="#replace-div"
+                    hx-swap="outerHTML">Set date and time</button>
+        </div>
+        {% bootstrap_button button_type="submit" content="OK" %}
+        {% bootstrap_button button_type="reset" content="Cancel" %}
+    </form>
+{% endif %}

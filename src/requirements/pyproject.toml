@@ -10,6 +10,7 @@ dependencies = [
     "whitenoise",
     "gunicorn",
     "pytz",
+    "django-htmx",
     "django-debug-toolbar", # Needs to be here, not in dev
 ]
 

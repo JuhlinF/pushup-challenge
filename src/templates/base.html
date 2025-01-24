@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta name="description" content="Push-up Challenge 2025 ">
+        <meta name="description" content="Push-Up Challenge 2025 ">
         <meta name="keywords" content="push-ups, challenge, 2025">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>
             {% block title %}
-                Push-up Challenge
+                Push-Up Challenge
             {% endblock title %}
         </title>
         {% bootstrap_css %}
@@ -30,6 +30,7 @@
         </div>
         {% bootstrap_javascript %}
         <script src="{% static 'js/base.js' %}"></script>
+        <script src="{% static 'js/htmx.min.js' %}"></script>
         {% block js %}
         {% endblock js %}
     </body>

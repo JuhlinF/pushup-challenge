@@ -8,6 +8,7 @@ asgiref==3.8.1
     # via
     #   django
     #   django-allauth
+    #   django-htmx
 astroid==3.3.8
     # via pylint
 black==24.10.0
@@ -33,6 +34,7 @@ django==5.1.4
     #   django-allauth
     #   django-bootstrap5
     #   django-debug-toolbar
+    #   django-htmx
 django-allauth==65.3.1
     # via PushupChallenge (pyproject.toml)
 django-bootstrap5==24.3
@@ -40,6 +42,8 @@ django-bootstrap5==24.3
 django-cache-url==3.4.5
     # via environs
 django-debug-toolbar==4.4.6
+    # via PushupChallenge (pyproject.toml)
+django-htmx==1.21.0
     # via PushupChallenge (pyproject.toml)
 djlint==1.36.4
     # via PushupChallenge (pyproject.toml)

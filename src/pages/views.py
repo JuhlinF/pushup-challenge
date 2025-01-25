@@ -1,7 +1,7 @@
 from datetime import date
 import math
 
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db.models import Sum
@@ -9,9 +9,10 @@ from django.db.models.functions import Coalesce
 
 from pushuplog.models import PushupLogEntry
 from pushuplog.forms import SimplePushupLogForm
+from users.models import User
 
 
-def index(request: HttpRequest):
+def index(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         return redirect("home")
 
@@ -19,13 +20,14 @@ def index(request: HttpRequest):
 
 
 @login_required
-def home(request: HttpRequest):
+def home(request: HttpRequest) -> HttpResponse:
     context = {}
 
     if request.htmx:
         context["form"] = SimplePushupLogForm()
         context["show_when_field"] = True
         return render(request, "components/logform.html", context)
+
     if request.method == "POST":
         form = SimplePushupLogForm(request.POST)
         if form.is_valid():
@@ -37,46 +39,21 @@ def home(request: HttpRequest):
                 kw["when"] = form.cleaned_data["when"]
             PushupLogEntry.objects.create(**kw)
 
-            form = (
-                SimplePushupLogForm()
+            form = SimplePushupLogForm(
+                {"repetitions": get_latest_reps(request.user) or 10}
             )  # Empty form to log new entry - if the form was invalid we re-show the previous form with error messages
     else:
-        form = SimplePushupLogForm()
+        form = SimplePushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
+
+    statistics = get_statistics(request.user)
 
     context["form"] = form
-
-    # Calculate stats
-    end_date = date(2026, 1, 1)
-    today = date.today()
-
-    statistics = {}
-    statistics["goal"] = 50_000
-    statistics.update(
-        PushupLogEntry.objects.filter(user=request.user, when__date=today).aggregate(
-            done_today=Coalesce(Sum("repetitions"), 0)
-        )
-    )
-    statistics.update(
-        PushupLogEntry.objects.filter(
-            user=request.user, when__date__lt=today
-        ).aggregate(done_before_today=Coalesce(Sum("repetitions"), 0))
-    )
-    statistics.update(
-        PushupLogEntry.objects.filter(user=request.user).aggregate(
-            done_total=Coalesce(Sum("repetitions"), 0)
-        )
-    )
-    statistics["needed_day"] = math.ceil(
-        (statistics["goal"] - statistics["done_before_today"]) / (end_date - today).days
-    )
-    statistics["left_today"] = statistics["needed_day"] - statistics["done_today"]
-
     context["statistics"] = statistics
     return render(request, "home.html", context)
 
 
 @login_required
-def logs(request: HttpRequest):
+def logs(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         id_to_delete = int(request.POST["entry_id"])
         logentry = PushupLogEntry.objects.get(id=id_to_delete)
@@ -90,3 +67,44 @@ def logs(request: HttpRequest):
     }
 
     return render(request, "logs.html", context)
+
+
+def get_latest_reps(user: User) -> int | None:
+    try:
+        latest_reps = (
+            PushupLogEntry.objects.filter(user=user).latest("when").repetitions
+        )
+    except PushupLogEntry.DoesNotExist:
+        latest_reps = None
+
+    return latest_reps
+
+
+def get_statistics(user: User) -> dict:
+    # Calculate stats
+    end_date = date(2026, 1, 1)
+    today = date.today()
+
+    statistics = {}
+    statistics["goal"] = 50_000
+    statistics.update(
+        PushupLogEntry.objects.filter(user=user, when__date=today).aggregate(
+            done_today=Coalesce(Sum("repetitions"), 0)
+        )
+    )
+    statistics.update(
+        PushupLogEntry.objects.filter(user=user, when__date__lt=today).aggregate(
+            done_before_today=Coalesce(Sum("repetitions"), 0)
+        )
+    )
+    statistics.update(
+        PushupLogEntry.objects.filter(user=user).aggregate(
+            done_total=Coalesce(Sum("repetitions"), 0)
+        )
+    )
+    statistics["needed_day"] = math.ceil(
+        (statistics["goal"] - statistics["done_before_today"]) / (end_date - today).days
+    )
+    statistics["left_today"] = statistics["needed_day"] - statistics["done_today"]
+
+    return statistics

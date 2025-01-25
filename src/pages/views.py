@@ -25,7 +25,8 @@ def home(request: HttpRequest) -> HttpResponse:
 
     if request.htmx:
         context["form"] = SimplePushupLogForm()
-        context["show_when_field"] = True
+        if request.GET.get("show_when"):
+            context["show_when_field"] = True
         return render(request, "components/logform.html", context)
 
     if request.method == "POST":
@@ -37,11 +38,8 @@ def home(request: HttpRequest) -> HttpResponse:
             }
             if form.cleaned_data["when"]:
                 kw["when"] = form.cleaned_data["when"]
-            PushupLogEntry.objects.create(**kw)
-
-            form = SimplePushupLogForm(
-                {"repetitions": get_latest_reps(request.user) or 10}
-            )  # Empty form to log new entry - if the form was invalid we re-show the previous form with error messages
+            new_entry = PushupLogEntry.objects.create(**kw)
+            form = None
     else:
         form = SimplePushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
 

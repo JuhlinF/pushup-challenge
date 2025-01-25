@@ -5,7 +5,19 @@
 {% endblock title %}
 {% block content %}
     <h1>Log some push-ups!</h1>
-    {% include "components/logform.html" %}
+    {% if form %}
+        {% include "components/logform.html" %}
+    {% else %}
+        <div id="response">
+            Push-ups logged!
+            <br>
+            <button class="btn btn-primary"
+                    type="button"
+                    hx-get=""
+                    hx-target="#response"
+                    hx-swap="outerHTML">Log some more push-ups</button>
+        </div>
+    {% endif %}
     <div>
         You've done <b>{{ statistics.done_today }}</b> push-ups so far today!
         <br>

@@ -1,0 +1,11 @@
+body {
+}
+
+.navbar {
+  border-bottom: 1px solid rgba(56,119,128,0.8);
+}
+
+.progress {
+  height: 3em;
+}
+

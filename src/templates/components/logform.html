@@ -2,10 +2,12 @@
 {% if show_when_field %}
     {% bootstrap_field form.when %}
 {% else %}
-    <form method="post" class="form" id="logform">
+    <form method="post" class="col" id="logform">
         {% csrf_token %}
-        {% bootstrap_form_errors form type="non_fields" %}
-        {% bootstrap_field form.repetitions %}
+        <div class="row mb-3">{% bootstrap_form_errors form type="non_fields" %}</div>
+        <div class="row mb-3">
+            {% bootstrap_field form.repetitions wrapper_class="" label_class="col-md-2" field_class="col-md-4" %}
+        </div>
         <div class="mb-3" id="replace-div">
             <button class="btn btn-link"
                     type="button"

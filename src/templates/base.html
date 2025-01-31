@@ -2,33 +2,42 @@
 {% load static %}
 {% load django_htmx %}
 <!DOCTYPE html>
-<html lang="en">
+<html data-bs-theme="light" lang="en">
     <head>
         <meta name="description" content="Push-Up Challenge 2025 ">
         <meta name="keywords" content="push-ups, challenge, 2025">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Push-up Challenge</title>
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/bs-theme-overrides.css' %}">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        {% block css %}
+        {% endblock css %}
         <title>
             {% block title %}
                 Push-Up Challenge
             {% endblock title %}
         </title>
-        {% bootstrap_css %}
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        {% block css %}
-        {% endblock css %}
         <link rel="icon" href="{% static "images/favicon.svg" %}">
     </head>
     <body>
         {% block navbar %}
             {% include "components/navbar.html" %}
         {% endblock navbar %}
-        <div class="container my-5">
-            {% block content %}
-                <h1>You really shouldn't see this.</h1>
-            {% endblock content %}
-        </div>
+        <header>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-xl-8 col-xxl-7">
+                        {% block content %}
+                            <h1>You really shouldn't see this.</h1>
+                        {% endblock content %}
+                    </div>
+                </div>
+            </div>
+        </header>
         {% bootstrap_javascript %}
         <script src="{% static 'js/base.js' %}"></script>
         <script src="{% static 'js/htmx.min.js' %}"></script>

@@ -4,6 +4,35 @@
     Home - Push-Up Challenge
 {% endblock title %}
 {% block content %}
+    <div class="col py-3">
+        <div class="card text-center bg-primary text-light">
+            <div class="card-body">
+                <h4 class="card-title">Today's progress</h4>
+                <h1>85 Done. 35 to go!</h1>
+                <div class="progress">
+                    <div class="progress-bar text-dark fw-bold fs-5"
+                         aria-valuenow="50"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="background-color: var(--bs-secondary);
+                                width: 50%">50%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col">
+            <div class="card border-primary border-2">
+                <div class="card-body">
+                    <h4 class="text-center card-title mb-3">Log some push-ups!</h4>
+                    {% if form %}
+                        {% include "components/logform.html" %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% comment "" %}
     <h1>Log some push-ups!</h1>
     {% if form %}
         {% include "components/logform.html" %}
@@ -11,11 +40,7 @@
         <div id="response">
             {{ new_entry.repetitions }} push-ups logged!
             <br>
-            <button class="btn btn-primary"
-                    type="button"
-                    hx-get=""
-                    hx-target="#response"
-                    hx-swap="outerHTML">Log some more push-ups</button>
+            <button class="btn btn-primary" type="button" hx-get="" hx-target="#response" hx-swap="outerHTML">Log some more push-ups</button>
         </div>
     {% endif %}
     <div>
@@ -32,4 +57,5 @@
         So far, you've done a total of {{ statistics.done_total }}  of your goal of {{ statistics.goal }} push-ups.
         <br>
     </div>
+    {% endcomment %}
 {% endblock content %}

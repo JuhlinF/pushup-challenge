@@ -6,7 +6,6 @@ dependencies = [
     "django",
     "django-allauth",
     "environs[django]",
-    "django-bootstrap5",
     "whitenoise",
     "gunicorn",
     "pytz",

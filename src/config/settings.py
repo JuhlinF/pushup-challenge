@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # External apps
     "debug_toolbar",
-    "django_bootstrap5",
     "allauth",
     "allauth.account",
     "django_htmx",
@@ -211,22 +210,6 @@ EMAIL_USE_TLS = email["EMAIL_USE_TLS"]
 EMAIL_BACKEND = email["EMAIL_BACKEND"]
 
 DEFAULT_FROM_EMAIL = env.str("DJANGO_DEFAULT_FROM_EMAIL", default="webmaster@localhost")
-
-# https://django-bootstrap5.readthedocs.io/en/latest/settings.html
-
-BOOTSTRAP5 = {
-    # I want to use Bootstrap 5.3, but django-bootstrap5 defaults to 5.2
-    "css_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
-        "integrity": "sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM",
-        "crossorigin": "anonymous",
-    },
-    "javascript_url": {
-        "url": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js",
-        "integrity": "sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz",
-        "crossorigin": "anonymous",
-    },
-}
 
 # https://docs.allauth.org/en/dev/account/configuration.html
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None

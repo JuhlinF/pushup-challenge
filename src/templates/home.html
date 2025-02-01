@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
 {% block title %}
     Home - Push-Up Challenge
 {% endblock title %}
@@ -25,9 +24,57 @@
             <div class="card border-primary border-2">
                 <div class="card-body">
                     <h4 class="text-center card-title mb-3">Log some push-ups!</h4>
-                    {% if form %}
-                        {% include "components/logform.html" %}
-                    {% endif %}
+                    <form class="col">
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label class="col-form-label">Repetitions:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" type="number">
+                            </div>
+                            <div class="col mt-3 mt-md-0">
+                                <button class="btn btn-outline-primary fst-italic" type="button">Set date and time</button>
+                            </div>
+                        </div>
+                        <div class="row row-cols-auto">
+                            <div class="col">
+                                <button class="btn btn-secondary" type="submit">Submit</button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="col">
+            <div class="card border-primary border-2">
+                <div class="card-body">
+                    <h4 class="text-center card-title mb-3">Log some push-ups!</h4>
+                    <form class="col">
+                        <div class="row mb-3">
+                            <div class="col-md-2">
+                                <label class="col-form-label">Repetitions:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" type="number">
+                            </div>
+                            <div class="col mt-3 mt-md-0">
+                                <button class="btn btn-outline-primary fst-italic" type="button">Set date and time</button>
+                            </div>
+                        </div>
+                        <div class="row row-cols-auto">
+                            <div class="col">
+                                <button class="btn btn-secondary" type="submit">Submit</button>
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

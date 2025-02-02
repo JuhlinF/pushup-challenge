@@ -9,6 +9,8 @@ asgiref==3.8.1
     #   django
     #   django-allauth
     #   django-htmx
+crispy-bootstrap5==2024.10
+    # via PushupChallenge (pyproject.toml)
 dj-database-url==2.3.0
     # via environs
 dj-email-url==1.0.6
@@ -16,14 +18,20 @@ dj-email-url==1.0.6
 django==5.1.4
     # via
     #   PushupChallenge (pyproject.toml)
+    #   crispy-bootstrap5
     #   dj-database-url
     #   django-allauth
+    #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
 django-allauth==65.3.1
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
+django-crispy-forms==2.3
+    # via
+    #   PushupChallenge (pyproject.toml)
+    #   crispy-bootstrap5
 django-debug-toolbar==4.4.6
     # via PushupChallenge (pyproject.toml)
 django-htmx==1.21.0

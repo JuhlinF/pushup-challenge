@@ -1,21 +1,6 @@
-{% load django_bootstrap5 %}
+{% load crispy_forms_tags %}
 {% if show_when_field %}
-    {% bootstrap_field form.when %}
+    {% crispy form form.when_helper %}
 {% else %}
-    <form method="post" class="col" id="logform">
-        {% csrf_token %}
-        <div class="row mb-3">{% bootstrap_form_errors form type="non_fields" %}</div>
-        <div class="row mb-3">
-            {% bootstrap_field form.repetitions wrapper_class="" label_class="col-md-2" field_class="col-md-4" %}
-        </div>
-        <div class="mb-3" id="replace-div">
-            <button class="btn btn-link"
-                    type="button"
-                    hx-get="?show_when=1"
-                    hx-target="#replace-div"
-                    hx-swap="outerHTML">Set date and time</button>
-        </div>
-        {% bootstrap_button button_type="submit" content="OK" %}
-        {% bootstrap_button button_type="reset" content="Cancel" %}
-    </form>
+    {% crispy form form.simple_helper %}
 {% endif %}

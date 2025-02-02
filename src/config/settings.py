@@ -61,6 +61,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_htmx",
+    "crispy_forms",
+    "crispy_bootstrap5",
     # Project apps
     "users",
     "pushuplog",
@@ -217,3 +219,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+# https://github.com/django-crispy-forms/crispy-bootstrap5?tab=readme-ov-file#usage
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+# https://django-crispy-forms.readthedocs.io/en/latest/crispy_tag_forms.html#make-crispy-forms-fail-loud
+CRISPY_FAIL_SILENTLY = not DEBUG

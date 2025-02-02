@@ -6,3 +6,7 @@
 .progress {
     height: 3em;
 }
+
+.asteriskField {
+    display: none;
+}

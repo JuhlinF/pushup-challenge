@@ -8,7 +8,7 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 
 from pushuplog.models import PushupLogEntry
-from pushuplog.forms import SimplePushupLogForm
+from pushuplog.forms import FullPushupLogForm
 from users.models import User
 
 
@@ -24,7 +24,7 @@ def home(request: HttpRequest) -> HttpResponse:
     context = {}
 
     if request.htmx:
-        context["form"] = SimplePushupLogForm(
+        context["form"] = FullPushupLogForm(
             {"repetitions": get_latest_reps(request.user) or 10}
         )
         if request.GET.get("show_when"):
@@ -32,7 +32,7 @@ def home(request: HttpRequest) -> HttpResponse:
         return render(request, "components/logform.html", context)
 
     if request.method == "POST":
-        form = SimplePushupLogForm(request.POST)
+        form = FullPushupLogForm(request.POST)
         if form.is_valid():
             kw = {
                 "repetitions": form.cleaned_data["repetitions"],
@@ -44,7 +44,7 @@ def home(request: HttpRequest) -> HttpResponse:
             context["new_entry"] = new_entry
             form = None
     else:
-        form = SimplePushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
+        form = FullPushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
 
     statistics = get_statistics(request.user)
 
@@ -107,5 +107,8 @@ def get_statistics(user: User) -> dict:
         (statistics["goal"] - statistics["done_before_today"]) / (end_date - today).days
     )
     statistics["left_today"] = statistics["needed_day"] - statistics["done_today"]
+    statistics["done_today_percent"] = round(
+        statistics["done_today"] / statistics["needed_day"] * 100
+    )
 
     return statistics

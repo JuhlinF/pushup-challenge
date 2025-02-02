@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
 {% block title %}
     Logs - Push-Up Challenge
 {% endblock title %}
@@ -20,7 +19,7 @@
                     <form method="post">
                         {% csrf_token %}
                         <input type="hidden" name="entry_id" value="{{ entry.id }}">
-                        {% bootstrap_button button_type="submit" content="X" size="sm" button_class="btn-danger" %}
+                        <input class="btn btn-danger btn-sm" type="submit" value="X">
                     </form>
                 </td>
             </tr>

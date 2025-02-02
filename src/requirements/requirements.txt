@@ -15,7 +15,7 @@ dj-database-url==2.3.0
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.1.4
+django==5.1.5
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
@@ -32,15 +32,15 @@ django-crispy-forms==2.3
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
-django-debug-toolbar==4.4.6
+django-debug-toolbar==5.0.1
     # via PushupChallenge (pyproject.toml)
 django-htmx==1.21.0
     # via PushupChallenge (pyproject.toml)
-environs==11.2.1
+environs==14.1.0
     # via PushupChallenge (pyproject.toml)
 gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
-marshmallow==3.23.2
+marshmallow==3.26.0
     # via environs
 packaging==24.2
     # via
@@ -48,7 +48,7 @@ packaging==24.2
     #   marshmallow
 python-dotenv==1.0.1
     # via environs
-pytz==2024.2
+pytz==2025.1
     # via PushupChallenge (pyproject.toml)
 sqlparse==0.5.3
     # via

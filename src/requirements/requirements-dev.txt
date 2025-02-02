@@ -11,7 +11,7 @@ asgiref==3.8.1
     #   django-htmx
 astroid==3.3.8
     # via pylint
-black==24.10.0
+black==25.1.0
     # via PushupChallenge (pyproject.toml)
 click==8.1.8
     # via
@@ -29,7 +29,7 @@ dj-database-url==2.3.0
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.1.4
+django==5.1.5
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
@@ -46,7 +46,7 @@ django-crispy-forms==2.3
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
-django-debug-toolbar==4.4.6
+django-debug-toolbar==5.0.1
     # via PushupChallenge (pyproject.toml)
 django-htmx==1.21.0
     # via PushupChallenge (pyproject.toml)
@@ -56,7 +56,7 @@ editorconfig==0.17.0
     # via
     #   cssbeautifier
     #   jsbeautifier
-environs==11.2.1
+environs==14.1.0
     # via PushupChallenge (pyproject.toml)
 flake8==7.1.1
     # via PushupChallenge (pyproject.toml)
@@ -64,7 +64,7 @@ gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
 iniconfig==2.0.0
     # via pytest
-isort==5.13.2
+isort==6.0.0
     # via pylint
 jsbeautifier==1.15.1
     # via
@@ -72,7 +72,7 @@ jsbeautifier==1.15.1
     #   djlint
 json5==0.10.0
     # via djlint
-marshmallow==3.23.2
+marshmallow==3.26.0
     # via environs
 mccabe==0.7.0
     # via
@@ -100,7 +100,7 @@ pycodestyle==2.12.1
     # via flake8
 pyflakes==3.2.0
     # via flake8
-pylint==3.3.3
+pylint==3.3.4
     # via
     #   pylint-django
     #   pylint-plugin-utils
@@ -114,7 +114,7 @@ pytest-django==4.9.0
     # via PushupChallenge (pyproject.toml)
 python-dotenv==1.0.1
     # via environs
-pytz==2024.2
+pytz==2025.1
     # via PushupChallenge (pyproject.toml)
 pyyaml==6.0.2
     # via djlint

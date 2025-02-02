@@ -1,10 +1,10 @@
-from datetime import date
+from datetime import date, timedelta
 import math
 
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.db.models import Sum
+from django.db.models import Sum, Max
 from django.db.models.functions import Coalesce
 
 from pushuplog.models import PushupLogEntry
@@ -83,8 +83,10 @@ def get_latest_reps(user: User) -> int | None:
 
 def get_statistics(user: User) -> dict:
     # Calculate stats
+    start_date = date(2025, 1, 1)
     end_date = date(2026, 1, 1)
     today = date.today()
+    yesterday = date.today() - timedelta(days=1)
 
     statistics = {}
     statistics["goal"] = 50_000
@@ -103,8 +105,17 @@ def get_statistics(user: User) -> dict:
             done_total=Coalesce(Sum("repetitions"), 0)
         )
     )
+    statistics.update(
+        PushupLogEntry.objects.values("when__date")
+        .annotate(pushups=Sum("repetitions"))
+        .aggregate(max_day=Max("pushups"))
+    )
     statistics["needed_day"] = math.ceil(
         (statistics["goal"] - statistics["done_before_today"]) / (end_date - today).days
+    )
+
+    statistics["avg_day"] = round(
+        statistics["done_before_today"] / (yesterday - start_date).days
     )
     statistics["left_today"] = statistics["needed_day"] - statistics["done_today"]
     statistics["done_today_percent"] = round(

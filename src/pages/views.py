@@ -8,7 +8,7 @@ from django.db.models import Sum
 from django.db.models.functions import Coalesce
 
 from pushuplog.models import PushupLogEntry
-from pushuplog.forms import FullPushupLogForm
+from pushuplog.forms import PushupLogForm
 from users.models import User
 
 
@@ -24,7 +24,7 @@ def home(request: HttpRequest) -> HttpResponse:
     context = {}
 
     if request.htmx:
-        context["form"] = FullPushupLogForm(
+        context["form"] = PushupLogForm(
             {"repetitions": get_latest_reps(request.user) or 10}
         )
         if request.GET.get("show_when"):
@@ -32,7 +32,7 @@ def home(request: HttpRequest) -> HttpResponse:
         return render(request, "components/logform.html", context)
 
     if request.method == "POST":
-        form = FullPushupLogForm(request.POST)
+        form = PushupLogForm(request.POST)
         if form.is_valid():
             kw = {
                 "repetitions": form.cleaned_data["repetitions"],
@@ -44,7 +44,7 @@ def home(request: HttpRequest) -> HttpResponse:
             context["new_entry"] = new_entry
             form = None
     else:
-        form = FullPushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
+        form = PushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
 
     statistics = get_statistics(request.user)
 

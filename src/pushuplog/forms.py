@@ -6,7 +6,7 @@ from crispy_forms.layout import Layout, Div, Row, Column, Submit, Reset, Button
 from crispy_bootstrap5.bootstrap5 import FloatingField
 
 
-class FullPushupLogForm(forms.Form):
+class PushupLogForm(forms.Form):
     repetitions = forms.IntegerField(min_value=0, initial=10)
     when = forms.DateTimeField(initial=datetime.now, required=False)
 

@@ -31,7 +31,7 @@ class PushupLogForm(forms.Form):
             Button(
                 "show_when",
                 "Set date and time",
-                css_class="btn-outline-primary fst-italic",
+                css_class="btn-outline-primary fst-italic btn-sm",
                 hx_get="?show_when=1",
                 hx_target="#replace_div",
                 hx_swap="outerHTML",

@@ -26,17 +26,19 @@
         {% block navbar %}
             {% include "components/navbar.html" %}
         {% endblock navbar %}
-        <header>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9 col-xl-8 col-xxl-7">
-                        {% block content %}
-                            <h1>You really shouldn't see this.</h1>
-                        {% endblock content %}
+        {% block body %}
+            <header>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-9 col-xl-8 col-xxl-7">
+                            {% block content %}
+                                <h1>You really shouldn't see this.</h1>
+                            {% endblock content %}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        {% endblock body %}
         <script src="{% static 'js/htmx.min.js' %}"></script>
         <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'js/base.js' %}"></script>

@@ -106,7 +106,7 @@ def get_statistics(user: User) -> dict:
         )
     )
     statistics.update(
-        PushupLogEntry.objects.values("when__date")
+        PushupLogEntry.objects.filter(user=user).values("when__date")
         .annotate(pushups=Sum("repetitions"))
         .aggregate(max_day=Max("pushups"))
     )

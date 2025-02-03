@@ -10,3 +10,7 @@
 .asteriskField {
     display: none;
 }
+
+.btn-secondary {
+    --bs-btn-color: var(--bs-dark);
+}

@@ -5,27 +5,7 @@
 {% endblock title %}
 {% block content %}
     <div class="col py-3">
-        <div class="card text-center bg-primary text-light">
-            <div class="card-body">
-                <h4 class="card-title">Today's progress</h4>
-                <h1>
-                    {{ statistics.done_today }} Done.
-                    {% if statistics.left_today > 0 %}
-                        {{ statistics.left_today }} To Go!
-                    {% else %}
-                        Today's goal reached!
-                    {% endif %}
-                </h1>
-                <div class="progress">
-                    <div class="progress-bar text-dark fw-bold fs-5"
-                         aria-valuenow="{{ statistics.done_today_percent }}"
-                         aria-valuemin="0"
-                         aria-valuemax="100"
-                         style="background-color: var(--bs-secondary);
-                                width: {{ statistics.done_today_percent }}%">{{ statistics.done_today_percent }}%</div>
-                </div>
-            </div>
-        </div>
+        {% include "components/dailyprogresscard.html" with done=statistics.done_today left=statistics.left_today done_percent=statistics.done_today_percent %}
     </div>
     <div class="row pb-3">
         <div class="col">

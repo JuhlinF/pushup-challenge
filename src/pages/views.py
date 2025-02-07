@@ -23,7 +23,7 @@ def index(request: HttpRequest) -> HttpResponse:
 def home(request: HttpRequest) -> HttpResponse:
     context = {}
 
-    if request.htmx:
+    if request.htmx and not request.htmx.boosted:
         context["form"] = PushupLogForm(
             {"repetitions": get_latest_reps(request.user) or 10}
         )
@@ -106,7 +106,8 @@ def get_statistics(user: User) -> dict:
         )
     )
     statistics.update(
-        PushupLogEntry.objects.filter(user=user).values("when__date")
+        PushupLogEntry.objects.filter(user=user)
+        .values("when__date")
         .annotate(pushups=Sum("repetitions"))
         .aggregate(max_day=Max("pushups"))
     )

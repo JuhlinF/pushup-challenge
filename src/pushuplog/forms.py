@@ -47,3 +47,5 @@ class PushupLogForm(forms.Form):
                 FloatingField("when", wrapper_class="gx-1 col-md-6"),
             )
         )
+
+        self.helper.attrs = self.simple_helper.attrs = {"hx_boost": "true"}

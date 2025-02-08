@@ -11,7 +11,9 @@
                         <tbody>
                             <tr>
                                 <td>Total push-ups done</td>
-                                <td>{{ statistics.done_total }}</td>
+                                <td>
+                                    <span {% if updated %}class="updated-value"{% endif %}>{{ statistics.done_total }}</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Average push-ups/day</td>

@@ -88,6 +88,7 @@ def dailyprogress(request: HttpRequest) -> HttpResponse:
 def statistics(request: HttpRequest) -> HttpResponse:
     context = dict()
     context["statistics"] = get_statistics(request.user)
+    context["updated"] = True
 
     return render(request, "components/statisticscard.html", context)
 

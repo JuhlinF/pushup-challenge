@@ -27,4 +27,14 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("home/", views.home, name="home"),
     path("logs/", views.logs, name="logs"),
+    path("logentryform/", views.logentryform, name="logentryform"),
+    path(
+        "logentryform/full/",
+        views.logentryform,
+        {"full_form": True},
+        name="logentryform_full",
+    ),
+    path("savelogentry/", views.savelogentry, name="savelogentry"),
+    path("dailyprogress/", views.dailyprogress, name="dailyprogress"),
+    path("statistics/", views.statistics, name="statistics"),
 ]

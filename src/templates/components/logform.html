@@ -1,6 +1,2 @@
 {% load crispy_forms_tags %}
-{% if show_when_field %}
-    {% crispy form form.when_helper %}
-{% else %}
-    {% crispy form form.simple_helper %}
-{% endif %}
+{% crispy form %}

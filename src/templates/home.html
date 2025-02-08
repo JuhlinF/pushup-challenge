@@ -8,83 +8,11 @@
         {% include "components/dailyprogresscard.html" with done=statistics.done_today left=statistics.left_today done_percent=statistics.done_today_percent %}
     </div>
     <div class="row pb-3">
-        <div class="col">
-            <div class="card border-primary border-2">
-                <div class="card-body">
-                    {% if form %}
-                        <h4 class="text-center card-title mb-3">Log some push-ups!</h4>
-                        {% include "components/logform.html" %}
-                    {% else %}
-                        <h4 class="text-center card-title mb-3">{{ new_entry.repetitions }} push-ups logged!</h4>
-                        <div class="row justify-content-center row-cols-auto">
-                            <div class="col">
-                                <a class="btn btn-primary" href="{% url 'home' %}">Log some more push-ups!</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
+        <div class="col">{% include "components/logformcard.html" %}</div>
     </div>
     <div class="row pb-3">
         <div class="col">
-            <div class="card border-primary border-2">
-                <div class="card-body">
-                    <h4 class="text-center card-title mb-3">Statistics</h4>
-                    <div class="row">
-                        <div class="col">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <tbody>
-                                        <tr>
-                                            <td>Total push-ups done</td>
-                                            <td>{{ statistics.done_total }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Average push-ups/day</td>
-                                            <td>{{ statistics.avg_day }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Push-ups needed/day</td>
-                                            <td>{{ statistics.needed_day }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Most push-ups done in one day</td>
-                                            <td>{{ statistics.max_day }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="col">{% include "components/statisticscard.html" %}</div>
         </div>
     </div>
-    {% comment "" %}
-    <h1>Log some push-ups!</h1>
-    {% if form %}
-        {% include "components/logform.html" %}
-    {% else %}
-        <div id="response">
-            {{ new_entry.repetitions }} push-ups logged!
-            <br>
-            <button class="btn btn-primary" type="button" hx-get="" hx-target="#response" hx-swap="outerHTML">Log some more push-ups</button>
-        </div>
-    {% endif %}
-    <div>
-        You've done <b>{{ statistics.done_today }}</b> push-ups so far today!
-        <br>
-        {% if statistics.left_today > 0 %}
-            You need to do {{ statistics.left_today }} more to reach today's goal.
-        {% elif statistics.left_today < 0 %}
-            You've surpassed today's goal by {{ statistics.left_today| cut:"-" }} push-ups. Awesome!
-        {% else %}
-            You've reached todays goal. Great!
-        {% endif %}
-        <br>
-        So far, you've done a total of {{ statistics.done_total }}  of your goal of {{ statistics.goal }} push-ups.
-        <br>
-    </div>
-    {% endcomment %}
 {% endblock content %}

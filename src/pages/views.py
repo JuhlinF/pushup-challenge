@@ -1,15 +1,24 @@
 from datetime import date, timedelta
 import math
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpResponse
+from django.http import HttpRequest as HttpRequestBase
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db.models import Sum, Max
 from django.db.models.functions import Coalesce
 
+from django_htmx.middleware import HtmxDetails
+from django_htmx.http import trigger_client_event
+
 from pushuplog.models import PushupLogEntry
 from pushuplog.forms import PushupLogForm
 from users.models import User
+
+
+# Hack for type-checking
+class HttpRequest(HttpRequestBase):
+    htmx: HtmxDetails
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -23,34 +32,63 @@ def index(request: HttpRequest) -> HttpResponse:
 def home(request: HttpRequest) -> HttpResponse:
     context = {}
 
-    if request.htmx and not request.htmx.boosted:
-        context["form"] = PushupLogForm(
-            {"repetitions": get_latest_reps(request.user) or 10}
-        )
-        if request.GET.get("show_when"):
-            context["show_when_field"] = True
-        return render(request, "components/logform.html", context)
-
-    if request.method == "POST":
-        form = PushupLogForm(request.POST)
-        if form.is_valid():
-            kw = {
-                "repetitions": form.cleaned_data["repetitions"],
-                "user": request.user,
-            }
-            if form.cleaned_data["when"]:
-                kw["when"] = form.cleaned_data["when"]
-            new_entry = PushupLogEntry.objects.create(**kw)
-            context["new_entry"] = new_entry
-            form = None
-    else:
-        form = PushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
-
+    form = PushupLogForm({"repetitions": get_latest_reps(request.user) or 10})
     statistics = get_statistics(request.user)
 
     context["form"] = form
     context["statistics"] = statistics
     return render(request, "home.html", context)
+
+
+@login_required
+def logentryform(request: HttpRequest, full_form=False) -> HttpResponse:
+    form = PushupLogForm(request.POST, full_form=full_form)
+    return render(request, "components/logform.html", {"form": form})
+
+
+@login_required
+def savelogentry(request: HttpRequest) -> HttpResponse:
+    context = dict()
+    full_form = False
+    form = PushupLogForm(request.POST)
+    if form.is_valid():
+        kw = {
+            "repetitions": form.cleaned_data["repetitions"],
+            "user": request.user,
+        }
+        if form.cleaned_data["when"]:
+            kw["when"] = form.cleaned_data["when"]
+            full_form = True
+        new_entry = PushupLogEntry.objects.create(**kw)
+        context["new_entry"] = new_entry
+        form = PushupLogForm(
+            {"repetitions": get_latest_reps(request.user) or 10}, full_form=full_form
+        )
+
+    response = render(request, "components/logform.html", {"form": form})
+    if form.is_valid():
+        return trigger_client_event(response, "newLogentry")
+    else:
+        return response
+
+
+@login_required
+def dailyprogress(request: HttpRequest) -> HttpResponse:
+    context = dict()
+    stats = get_statistics(request.user)
+    context["done"] = stats["done_today"]
+    context["left"] = stats["left_today"]
+    context["done_percent"] = stats["done_today_percent"]
+
+    return render(request, "components/dailyprogresscard.html", context)
+
+
+@login_required
+def statistics(request: HttpRequest) -> HttpResponse:
+    context = dict()
+    context["statistics"] = get_statistics(request.user)
+
+    return render(request, "components/statisticscard.html", context)
 
 
 @login_required

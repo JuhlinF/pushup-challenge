@@ -5,7 +5,10 @@ Context usage:
     left (int): The number of push-ups left today
     done_percent (int): Push-ups done today as percent
 {% endcomment %}
-<div class="card text-center bg-primary text-light">
+<div class="card text-center bg-primary text-light"
+     hx-get="{% url 'dailyprogress' %}"
+     hx-trigger="newLogentry from:body"
+     hx-swap="outerHTML">
     <div class="card-body">
         <h4 class="card-title">Today's progress</h4>
         <h1 id="dailyprogresssummary">

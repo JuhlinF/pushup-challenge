@@ -1,0 +1,15 @@
+<div class="card border-primary border-2">
+    <div class="card-body">
+        {% if form %}
+            <h4 class="text-center card-title mb-3">Log some push-ups!</h4>
+            {% include "components/logform.html" %}
+        {% else %}
+            <h4 class="text-center card-title mb-3">{{ new_entry.repetitions }} push-ups logged!</h4>
+            <div class="row justify-content-center row-cols-auto">
+                <div class="col">
+                    <a class="btn btn-primary" href="{% url 'home' %}">Log some more push-ups!</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>

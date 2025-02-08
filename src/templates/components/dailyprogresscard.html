@@ -6,17 +6,18 @@ Context usage:
     done_percent (int): Push-ups done today as percent
 {% endcomment %}
 <div class="card text-center bg-primary text-light"
+     id="apa"
      hx-get="{% url 'dailyprogress' %}"
      hx-trigger="newLogentry from:body"
      hx-swap="outerHTML">
     <div class="card-body">
         <h4 class="card-title">Today's progress</h4>
-        <h1 id="dailyprogresssummary">
-            {{ done }} Done.
+        <h1>
+            <span {% if updated %}class="updated-value"{% endif %}>{{ done }}</span> Done.
             {% if left > 0 %}
-                {{ left }} To Go!
+                <span {% if updated %}class="updated-value"{% endif %}>{{ left }}</span> To Go!
             {% else %}
-                Today's goal reached!
+                <span {% if updated %}class="updated-value"{% endif %}>Today's goal reached!</span>
             {% endif %}
         </h1>
         <div class="progress">
@@ -26,7 +27,9 @@ Context usage:
                  aria-valuemin="0"
                  aria-valuemax="100"
                  style="background-color: var(--bs-secondary);
-                        width: {{ done_percent }}%">{{ done_percent }}%</div>
+                        width: {{ done_percent }}%">
+                <span {% if updated %}class="updated-value"{% endif %}>{{ done_percent }}%</span>
+            </div>
         </div>
     </div>
 </div>

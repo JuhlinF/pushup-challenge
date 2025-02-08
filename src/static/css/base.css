@@ -14,3 +14,17 @@
 .btn-secondary {
     --bs-btn-color: var(--bs-dark);
 }
+
+.updated-value {
+    animation: fader 1s;
+}
+
+@keyframes fader {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

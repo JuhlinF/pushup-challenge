@@ -79,6 +79,7 @@ def dailyprogress(request: HttpRequest) -> HttpResponse:
     context["done"] = stats["done_today"]
     context["left"] = stats["left_today"]
     context["done_percent"] = stats["done_today_percent"]
+    context["updated"] = True
 
     return render(request, "components/dailyprogresscard.html", context)
 

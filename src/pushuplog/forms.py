@@ -38,7 +38,7 @@ class PushupLogForm(forms.Form):
             self.helper.layout[0][1] = Column(
                 Button(
                     "full_form",
-                    "Set date and time",
+                    "Set date and time manually",
                     css_class="btn-outline-primary fst-italic btn-sm",
                     hx_post=reverse("logentryform_full"),
                     hx_swap="outerHTML",

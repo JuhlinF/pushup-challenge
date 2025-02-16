@@ -1,0 +1,29 @@
+<div class="accordion-item">
+    <h2 class="accordion-header" role="tab">
+        <button class="accordion-button {% if not expand %}collapsed{% endif %}"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#dailylogtable-{{ entry.when_date.toordinal }}"
+                aria-expanded="{% if expand %}true{% else %}false{% endif %}"
+                aria-controls="dailylogtable-{{ entry.when_date.toordinal }}">
+            <em>{{ entry.when_date|date }}</em>: &nbsp; <strong>{{ entry.repetitions_sum }}</strong>&nbsp;push-ups
+        </button>
+    </h2>
+    <div class="accordion-collapse collapse {% if expand %}show{% endif %}"
+         id="dailylogtable-{{ entry.when_date.toordinal }}"
+         role="tabpanel"
+         data-bs-parent="#accordion-1">
+        <div class="accordion-body">
+            {% if expand %}
+                {% include "components/dailylogtable.html" %}
+            {% else %}
+                <div hx-get="{% url 'logsfordate' year=entry.when_date.year month=entry.when_date.month day=entry.when_date.day %}"
+                     hx-trigger="click once from:previous button">
+                    <div class="spinner-border htmx-indicator" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

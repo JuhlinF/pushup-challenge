@@ -27,6 +27,9 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("home/", views.home, name="home"),
     path("logs/", views.logs, name="logs"),
+    path(
+        "logs/<int:year>/<int:month>/<int:day>", views.logsfordate, name="logsfordate"
+    ),
     path("logentryform/", views.logentryform, name="logentryform"),
     path(
         "logentryform/full/",
@@ -35,6 +38,7 @@ urlpatterns = [
         name="logentryform_full",
     ),
     path("savelogentry/", views.savelogentry, name="savelogentry"),
+    path("editlogentry/<int:id>", views.editlogentry, name="editlogentry"),
     path("dailyprogress/", views.dailyprogress, name="dailyprogress"),
     path("statistics/", views.statistics, name="statistics"),
 ]

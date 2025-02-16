@@ -3,26 +3,9 @@
     Logs - Push-Up Challenge
 {% endblock title %}
 {% block content %}
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">When</th>
-                <th scope="col">Repetitions</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
+    <div class="accordion mt-3" role="tablist" id="accordion-1">
         {% for entry in pushup_log %}
-            <tr>
-                <td>{{ entry.when }}</td>
-                <td>{{ entry.repetitions }}</td>
-                <td>
-                    <form method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="entry_id" value="{{ entry.id }}">
-                        <input class="btn btn-danger btn-sm" type="submit" value="X">
-                    </form>
-                </td>
-            </tr>
+            {% include "components/dailylog.html" with expand=False %}
         {% endfor %}
-    </table>
+    </div>
 {% endblock content %}

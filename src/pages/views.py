@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest as HttpRequestBase
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.db.models import Sum, Max
+from django.db.models import Sum, Max, F
 from django.db.models.functions import Coalesce
 
 from django_htmx.middleware import HtmxDetails
@@ -95,19 +95,57 @@ def statistics(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def logs(request: HttpRequest) -> HttpResponse:
-    if request.method == "POST":
-        id_to_delete = int(request.POST["entry_id"])
-        logentry = PushupLogEntry.objects.get(id=id_to_delete)
-        if logentry.user == request.user:
-            logentry.delete()
-
-    pushup_log = PushupLogEntry.objects.filter(user=request.user).order_by("-when")
+    pushup_log = (
+        PushupLogEntry.objects.filter(user=request.user)
+        .values(when_date=F("when__date"))
+        .annotate(repetitions_sum=Sum("repetitions"))
+        .order_by("-when_date")
+    )
 
     context = {
         "pushup_log": pushup_log,
     }
 
     return render(request, "logs.html", context)
+
+
+@login_required
+def logsfordate(request: HttpRequest, year: int, month: int, day: int) -> HttpResponse:
+    pushup_log = PushupLogEntry.objects.filter(
+        user=request.user, when__date=date(year, month, day)
+    )
+
+    context = {"pushup_log": pushup_log}
+
+    result = render(request, "components/dailylogtable.html", context)
+    return result
+
+
+@login_required
+def editlogentry(request: HttpRequest, id: int) -> HttpResponse:
+    entry = PushupLogEntry.objects.get(id=id)
+    year, month, day = entry.when.date().year, entry.when.month, entry.when.day
+    entry.delete()
+
+    daily_stats = (
+        PushupLogEntry.objects.filter(
+            user=request.user, when__date=date(year, month, day)
+        )
+        .values(when_date=F("when__date"))
+        .annotate(repetitions_sum=Sum("repetitions"))
+    )[0]
+
+    pushup_log = PushupLogEntry.objects.filter(
+        user=request.user, when__date=date(year, month, day)
+    )
+
+    context = {
+        "entry": daily_stats,
+        "pushup_log": pushup_log,
+        "expand": True,
+    }
+
+    return render(request, "components/dailylog.html", context)
 
 
 def get_latest_reps(user: User) -> int | None:

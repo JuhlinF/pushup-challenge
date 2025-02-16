@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Push-ups</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in pushup_log %}
+                <tr>
+                    <td>{{ entry.when|time }}</td>
+                    <td>{{ entry.repetitions }}</td>
+                    <td>
+                        <input class="btn btn-danger btn-sm"
+                               type="submit"
+                               value="X"
+                               hx-post="{% url 'editlogentry' entry.id %}"
+                               hx-swap="outerHTML"
+                               hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+                               hx-target="closest .accordion-item">
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

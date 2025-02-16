@@ -113,7 +113,7 @@ def logs(request: HttpRequest) -> HttpResponse:
 def logsfordate(request: HttpRequest, year: int, month: int, day: int) -> HttpResponse:
     pushup_log = PushupLogEntry.objects.filter(
         user=request.user, when__date=date(year, month, day)
-    )
+    ).order_by("-when")
 
     context = {"pushup_log": pushup_log}
 
@@ -137,7 +137,7 @@ def editlogentry(request: HttpRequest, id: int) -> HttpResponse:
 
     pushup_log = PushupLogEntry.objects.filter(
         user=request.user, when__date=date(year, month, day)
-    )
+    ).order_by("-when")
 
     context = {
         "entry": daily_stats,

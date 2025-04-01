@@ -9,7 +9,7 @@ asgiref==3.8.1
     #   django
     #   django-allauth
     #   django-htmx
-astroid==3.3.8
+astroid==3.3.9
     # via pylint
 black==25.1.0
     # via PushupChallenge (pyproject.toml)
@@ -21,7 +21,7 @@ colorama==0.4.6
     # via djlint
 crispy-bootstrap5==2024.10
     # via PushupChallenge (pyproject.toml)
-cssbeautifier==1.15.1
+cssbeautifier==1.15.4
     # via djlint
 dill==0.3.9
     # via pylint
@@ -38,7 +38,7 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.3.1
+django-allauth==65.6.0
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
@@ -46,9 +46,9 @@ django-crispy-forms==2.3
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
-django-debug-toolbar==5.0.1
+django-debug-toolbar==5.1.0
     # via PushupChallenge (pyproject.toml)
-django-htmx==1.21.0
+django-htmx==1.23.0
     # via PushupChallenge (pyproject.toml)
 djlint==1.36.4
     # via PushupChallenge (pyproject.toml)
@@ -56,23 +56,23 @@ editorconfig==0.17.0
     # via
     #   cssbeautifier
     #   jsbeautifier
-environs==14.1.0
+environs==14.1.1
     # via PushupChallenge (pyproject.toml)
-flake8==7.1.1
+flake8==7.2.0
     # via PushupChallenge (pyproject.toml)
 gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
-iniconfig==2.0.0
+iniconfig==2.1.0
     # via pytest
-isort==6.0.0
+isort==6.0.1
     # via pylint
-jsbeautifier==1.15.1
+jsbeautifier==1.15.4
     # via
     #   cssbeautifier
     #   djlint
 json5==0.10.0
     # via djlint
-marshmallow==3.26.0
+marshmallow==3.26.1
     # via environs
 mccabe==0.7.0
     # via
@@ -90,17 +90,17 @@ pathspec==0.12.1
     # via
     #   black
     #   djlint
-platformdirs==4.3.6
+platformdirs==4.3.7
     # via
     #   black
     #   pylint
 pluggy==1.5.0
     # via pytest
-pycodestyle==2.12.1
+pycodestyle==2.13.0
     # via flake8
-pyflakes==3.2.0
+pyflakes==3.3.2
     # via flake8
-pylint==3.3.4
+pylint==3.3.6
     # via
     #   pylint-django
     #   pylint-plugin-utils
@@ -108,13 +108,13 @@ pylint-django==2.6.1
     # via PushupChallenge (pyproject.toml)
 pylint-plugin-utils==0.8.2
     # via pylint-django
-pytest==8.3.4
+pytest==8.3.5
     # via pytest-django
-pytest-django==4.9.0
+pytest-django==4.11.0
     # via PushupChallenge (pyproject.toml)
-python-dotenv==1.0.1
+python-dotenv==1.1.0
     # via environs
-pytz==2025.1
+pytz==2025.2
     # via PushupChallenge (pyproject.toml)
 pyyaml==6.0.2
     # via djlint
@@ -134,5 +134,5 @@ tqdm==4.67.1
     # via djlint
 typing-extensions==4.12.2
     # via dj-database-url
-whitenoise==6.8.2
+whitenoise==6.9.0
     # via PushupChallenge (pyproject.toml)

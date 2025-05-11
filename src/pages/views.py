@@ -133,7 +133,12 @@ def editlogentry(request: HttpRequest, id: int) -> HttpResponse:
         )
         .values(when_date=F("when__date"))
         .annotate(repetitions_sum=Sum("repetitions"))
-    )[0]
+    )
+    if len(daily_stats) == 0:
+        # No entries for this date anymore
+        return HttpResponse("")
+    else:
+        daily_stats = daily_stats[0]
 
     pushup_log = PushupLogEntry.objects.filter(
         user=request.user, when__date=date(year, month, day)

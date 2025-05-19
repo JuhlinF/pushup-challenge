@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http import HttpRequest as HttpRequestBase
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.db.models import Sum, Max, F
+from django.db.models import Sum, Max, F, QuerySet
 from django.db.models.functions import Coalesce
 
 from django_htmx.middleware import HtmxDetails
@@ -94,7 +94,14 @@ def statistics(request: HttpRequest) -> HttpResponse:
 
 
 @login_required
-def logs(request: HttpRequest) -> HttpResponse:
+def logs(
+    request: HttpRequest, year: int | None = None, month: int | None = None
+) -> HttpResponse:
+    if year is None and month is None:
+        start_date = date.today().replace(day=1)
+    else:
+        start_date = date(year, month, 1)
+
     pushup_log = (
         PushupLogEntry.objects.filter(user=request.user)
         .values(when_date=F("when__date"))
@@ -102,8 +109,13 @@ def logs(request: HttpRequest) -> HttpResponse:
         .order_by("-when_date")
     )
 
+    paginator = MonthPaginator(pushup_log, "when_date")
+    month_log = paginator.get_month(start_date)
+
     context = {
-        "pushup_log": pushup_log,
+        "pushup_log": month_log,
+        "date": start_date,
+        "paginator": paginator,
     }
 
     return render(request, "logs.html", context)
@@ -207,3 +219,24 @@ def get_statistics(user: User) -> dict:
     )
 
     return statistics
+
+
+class MonthPaginator:
+    def __init__(self, object_list: QuerySet, date_field: str):
+        self.object_list = object_list
+        self.date_field = date_field
+
+    def all_months(self):
+        return self.object_list.dates(self.date_field, "month")
+
+    def get_month(self, month: date) -> QuerySet:
+        """All entries for month
+
+        Args:
+            month (date): a date object containing the first day of the month, e.g. date(2025, 5, 1)
+        """
+        month_end = month + timedelta(days=31)
+        month_end = month_end - timedelta(days=month_end.day)
+
+        kwargs = {f"{self.date_field}__range": (month, month_end)}
+        return self.object_list.filter(**kwargs)

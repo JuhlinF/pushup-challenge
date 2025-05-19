@@ -3,9 +3,34 @@
     Logs - Push-Up Challenge
 {% endblock title %}
 {% block content %}
-    <div class="accordion mt-3" role="tablist" id="accordion-1">
-        {% for entry in pushup_log %}
-            {% include "components/dailylog.html" with expand=False %}
-        {% endfor %}
+    <div class="row pt-3">
+        <div class="column">
+            <nav aria-label="Month navigation">
+                <ul class="pagination justify-content-center">
+                    <div class="dropdown-center">
+                        <a class="h1 text-decoration-none dropdown-toggle"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false">{{ date|date:"F Y" }}</a>
+                        <ul class="dropdown-menu">
+                            {% for month in paginator.all_months %}
+                                <li>
+                                    <a class="dropdown-item text-center {% if date == month %}active{% endif %}"
+                                       href="{% url 'logsformonth' month.year month.month %}">{{ month|date:"F Y" }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row pb-3">
+        <div class="column">
+            <div class="accordion" role="tablist" id="accordion-1">
+                {% for entry in pushup_log %}
+                    {% include "components/dailylog.html" with expand=False %}
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock content %}

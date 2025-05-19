@@ -27,6 +27,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("home/", views.home, name="home"),
     path("logs/", views.logs, name="logs"),
+    path("logs/<int:year>/<int:month>", views.logs, name="logsformonth"),
     path(
         "logs/<int:year>/<int:month>/<int:day>", views.logsfordate, name="logsfordate"
     ),

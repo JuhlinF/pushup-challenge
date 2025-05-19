@@ -6,7 +6,7 @@
                 data-bs-target="#dailylogtable-{{ entry.when_date.toordinal }}"
                 aria-expanded="{% if expand %}true{% else %}false{% endif %}"
                 aria-controls="dailylogtable-{{ entry.when_date.toordinal }}">
-            <em>{{ entry.when_date|date }}</em>: &nbsp; <strong>{{ entry.repetitions_sum }}</strong>&nbsp;push-ups
+            <em>{{ entry.when_date|date:"M d" }}</em>: &nbsp; <strong>{{ entry.repetitions_sum }}</strong>&nbsp;push-ups
         </button>
     </h2>
     <div class="accordion-collapse collapse {% if expand %}show{% endif %}"

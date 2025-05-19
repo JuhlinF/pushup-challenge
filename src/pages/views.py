@@ -227,7 +227,7 @@ class MonthPaginator:
         self.date_field = date_field
 
     def all_months(self):
-        return self.object_list.dates(self.date_field, "month")
+        return self.object_list.dates(self.date_field, "month", order="DESC")
 
     def get_month(self, month: date) -> QuerySet:
         """All entries for month

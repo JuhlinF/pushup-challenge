@@ -14,7 +14,7 @@
                         <ul class="dropdown-menu">
                             {% for month in paginator.all_months %}
                                 <li>
-                                    <a class="dropdown-item text-center {% if date == month %}active{% endif %}"
+                                    <a class="dropdown-item text-center {% if date == month %}bg-primary text-white{% endif %}"
                                        href="{% url 'logsformonth' month.year month.month %}">{{ month|date:"F Y" }}</a>
                                 </li>
                             {% endfor %}

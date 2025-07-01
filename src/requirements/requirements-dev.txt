@@ -9,7 +9,7 @@ asgiref==3.8.1
     #   django
     #   django-allauth
     #   django-htmx
-astroid==3.3.9
+astroid==3.3.10
     # via pylint
 black==25.1.0
     # via PushupChallenge (pyproject.toml)
@@ -19,13 +19,13 @@ click==8.1.8
     #   djlint
 colorama==0.4.6
     # via djlint
-crispy-bootstrap5==2025.4
+crispy-bootstrap5==2025.6
     # via PushupChallenge (pyproject.toml)
 cssbeautifier==1.15.4
     # via djlint
 dill==0.4.0
     # via pylint
-dj-database-url==2.3.0
+dj-database-url==3.0.0
     # via environs
 dj-email-url==1.0.6
     # via environs
@@ -38,7 +38,7 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.7.0
+django-allauth==65.9.0
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
@@ -48,17 +48,17 @@ django-crispy-forms==2.4
     #   crispy-bootstrap5
 django-debug-toolbar==5.2.0
     # via PushupChallenge (pyproject.toml)
-django-htmx==1.23.0
+django-htmx==1.23.2
     # via PushupChallenge (pyproject.toml)
 djlint==1.36.4
     # via PushupChallenge (pyproject.toml)
-editorconfig==0.17.0
+editorconfig==0.17.1
     # via
     #   cssbeautifier
     #   jsbeautifier
-environs==14.1.1
+environs==14.2.0
     # via PushupChallenge (pyproject.toml)
-flake8==7.2.0
+flake8==7.3.0
     # via PushupChallenge (pyproject.toml)
 gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
@@ -90,29 +90,29 @@ pathspec==0.12.1
     # via
     #   black
     #   djlint
-platformdirs==4.3.7
+platformdirs==4.3.8
     # via
     #   black
     #   pylint
-pluggy==1.5.0
+pluggy==1.6.0
     # via pytest
-pycodestyle==2.13.0
+pycodestyle==2.14.0
     # via flake8
-pyflakes==3.3.2
+pyflakes==3.4.0
     # via flake8
-pylint==3.3.6
+pylint==3.3.7
     # via
     #   pylint-django
     #   pylint-plugin-utils
 pylint-django==2.6.1
     # via PushupChallenge (pyproject.toml)
-pylint-plugin-utils==0.8.2
+pylint-plugin-utils==0.9.0
     # via pylint-django
-pytest==8.3.5
+pytest==8.4.1
     # via pytest-django
 pytest-django==4.11.1
     # via PushupChallenge (pyproject.toml)
-python-dotenv==1.1.0
+python-dotenv==1.1.1
     # via environs
 pytz==2025.2
     # via PushupChallenge (pyproject.toml)
@@ -128,11 +128,11 @@ sqlparse==0.5.3
     # via
     #   django
     #   django-debug-toolbar
-tomlkit==0.13.2
+tomlkit==0.13.3
     # via pylint
 tqdm==4.67.1
     # via djlint
-typing-extensions==4.13.2
+typing-extensions==4.14.0
     # via dj-database-url
 whitenoise==6.9.0
     # via PushupChallenge (pyproject.toml)

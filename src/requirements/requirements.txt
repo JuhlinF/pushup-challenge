@@ -4,14 +4,14 @@
 #
 #    pip-compile --output-file=requirements.txt --strip-extras
 #
-asgiref==3.8.1
+asgiref==3.9.1
     # via
     #   django
     #   django-allauth
     #   django-htmx
-crispy-bootstrap5==2025.4
+crispy-bootstrap5==2025.6
     # via PushupChallenge (pyproject.toml)
-dj-database-url==2.3.0
+dj-database-url==3.0.1
     # via environs
 dj-email-url==1.0.6
     # via environs
@@ -24,7 +24,7 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.7.0
+django-allauth==65.10.0
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
@@ -32,11 +32,11 @@ django-crispy-forms==2.4
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
-django-debug-toolbar==5.2.0
+django-debug-toolbar==6.0.0
     # via PushupChallenge (pyproject.toml)
-django-htmx==1.23.0
+django-htmx==1.23.2
     # via PushupChallenge (pyproject.toml)
-environs==14.1.1
+environs==14.3.0
     # via PushupChallenge (pyproject.toml)
 gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
@@ -46,7 +46,7 @@ packaging==25.0
     # via
     #   gunicorn
     #   marshmallow
-python-dotenv==1.1.0
+python-dotenv==1.1.1
     # via environs
 pytz==2025.2
     # via PushupChallenge (pyproject.toml)
@@ -54,7 +54,7 @@ sqlparse==0.5.3
     # via
     #   django
     #   django-debug-toolbar
-typing-extensions==4.13.2
+typing-extensions==4.14.1
     # via dj-database-url
 whitenoise==6.9.0
     # via PushupChallenge (pyproject.toml)

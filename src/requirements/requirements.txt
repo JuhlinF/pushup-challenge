@@ -24,7 +24,7 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.10.0
+django-allauth==65.11.1
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
@@ -40,7 +40,7 @@ environs==14.3.0
     # via PushupChallenge (pyproject.toml)
 gunicorn==23.0.0
     # via PushupChallenge (pyproject.toml)
-marshmallow==4.0.0
+marshmallow==4.0.1
     # via environs
 packaging==25.0
     # via
@@ -54,7 +54,7 @@ sqlparse==0.5.3
     # via
     #   django
     #   django-debug-toolbar
-typing-extensions==4.14.1
+typing-extensions==4.15.0
     # via dj-database-url
 whitenoise==6.9.0
     # via PushupChallenge (pyproject.toml)

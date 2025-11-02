@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=dev --output-file=requirements-dev.txt --strip-extras
 #
-asgiref==3.9.2
+asgiref==3.10.0
     # via
     #   django
     #   django-allauth
@@ -38,7 +38,7 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.11.2
+django-allauth==65.13.0
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
@@ -46,7 +46,7 @@ django-crispy-forms==2.4
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
-django-debug-toolbar==6.0.0
+django-debug-toolbar==6.1.0
     # via PushupChallenge (pyproject.toml)
 django-htmx==1.26.0
     # via PushupChallenge (pyproject.toml)
@@ -56,7 +56,7 @@ editorconfig==0.17.1
     # via
     #   cssbeautifier
     #   jsbeautifier
-environs==14.3.0
+environs==14.4.0
     # via PushupChallenge (pyproject.toml)
 flake8==7.3.0
     # via PushupChallenge (pyproject.toml)
@@ -100,7 +100,7 @@ pycodestyle==2.14.0
     # via flake8
 pyflakes==3.4.0
     # via flake8
-pylint==3.3.8
+pylint==3.3.9
     # via
     #   pylint-django
     #   pylint-plugin-utils
@@ -112,13 +112,13 @@ pytest==8.4.2
     # via pytest-django
 pytest-django==4.11.1
     # via PushupChallenge (pyproject.toml)
-python-dotenv==1.1.1
+python-dotenv==1.2.1
     # via environs
 pytz==2025.2
     # via PushupChallenge (pyproject.toml)
 pyyaml==6.0.3
     # via djlint
-regex==2025.9.18
+regex==2025.10.23
     # via djlint
 six==1.17.0
     # via

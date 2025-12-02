@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements.txt --strip-extras
 #
-asgiref==3.10.0
+asgiref==3.11.0
     # via
     #   django
     #   django-allauth
@@ -24,11 +24,11 @@ django==5.1.5
     #   django-crispy-forms
     #   django-debug-toolbar
     #   django-htmx
-django-allauth==65.13.0
+django-allauth==65.13.1
     # via PushupChallenge (pyproject.toml)
 django-cache-url==3.4.5
     # via environs
-django-crispy-forms==2.4
+django-crispy-forms==2.5
     # via
     #   PushupChallenge (pyproject.toml)
     #   crispy-bootstrap5
@@ -50,7 +50,7 @@ python-dotenv==1.2.1
     # via environs
 pytz==2025.2
     # via PushupChallenge (pyproject.toml)
-sqlparse==0.5.3
+sqlparse==0.5.4
     # via
     #   django
     #   django-debug-toolbar

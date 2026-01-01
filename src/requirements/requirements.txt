@@ -50,7 +50,7 @@ python-dotenv==1.2.1
     # via environs
 pytz==2025.2
     # via PushupChallenge (pyproject.toml)
-sqlparse==0.5.4
+sqlparse==0.5.5
     # via
     #   django
     #   django-debug-toolbar
